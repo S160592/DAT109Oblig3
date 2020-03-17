@@ -1,19 +1,19 @@
 package no.hvl.dat109.EAO;
 
-import java.util.List;
-
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import no.hvl.dat109.Entity.Produkt;
+import no.hvl.dat109.Interfaces.Databehandling;
 
 @Stateless
-public class ProduktEAO  {
+public class DatabehandlingEAO implements Databehandling {
 	@PersistenceContext(name = "avfall")
 	private EntityManager em;
 
-	public List<Produkt> hentAlle() {
-		return em.createNamedQuery("Produkt.findAll", Produkt.class).getResultList();
-	}
+	@EJB
+	private ProduktEAO produktEAO;
+
+
 }
