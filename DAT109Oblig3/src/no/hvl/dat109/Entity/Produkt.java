@@ -10,11 +10,14 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name = "Produkt", schema = "oblig3")
 @NamedQuery(name="Produkt.findAll", query="SELECT p FROM Produkt p")
 public class Produkt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "barcode", updatable = false, nullable = false)
 	private String barcode;
 
 	private String navn;
@@ -76,5 +79,12 @@ public class Produkt implements Serializable {
 	public void setAvfallstypeBean(Avfallstype avfallstypeBean) {
 		this.avfallstypeBean = avfallstypeBean;
 	}
+
+	@Override
+	public String toString() {
+		return "Produkt [barcode=" + barcode + ", navn=" + navn + "]";
+	}
+	
+	
 
 }

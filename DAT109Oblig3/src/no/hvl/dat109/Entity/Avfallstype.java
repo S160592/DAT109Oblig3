@@ -10,6 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name = "Avfallstype", schema = "oblig3")
 @NamedQuery(name="Avfallstype.findAll", query="SELECT a FROM Avfallstype a")
 public class Avfallstype implements Serializable {
 	private static final long serialVersionUID = 1L;
