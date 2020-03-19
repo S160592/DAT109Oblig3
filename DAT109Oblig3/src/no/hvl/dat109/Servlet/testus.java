@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Entity.Avfallstype;
+import no.hvl.dat109.Entity.Plastavfall;
 import no.hvl.dat109.Entity.Produkt;
 import no.hvl.dat109.Interfaces.Databehandling;
 
@@ -57,6 +59,14 @@ public class testus extends HttpServlet {
 		
 		Produkt produkt = new Produkt();
 		produkt.setBarcode(barcode);
+
+//		Avfallstype type = new Avfallstype();
+//		type.setTypenavn("Plast");
+		produkt.setAvfallstypeBean(new Plastavfall());
+		
+		System.out.println(produkt.getAvfallstypeBean().getTypenavn());
+		
+		produkt.setNavn("testprodukt");
 		
 		databehandling.lagreProdukt(produkt);
 	}

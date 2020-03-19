@@ -1,8 +1,18 @@
 package no.hvl.dat109.Entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -11,6 +21,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Avfallstype", schema = "oblig3")
+@DiscriminatorColumn(name="typenavn", 
+discriminatorType = DiscriminatorType.STRING)
 @NamedQuery(name="Avfallstype.findAll", query="SELECT a FROM Avfallstype a")
 public class Avfallstype implements Serializable {
 	private static final long serialVersionUID = 1L;
