@@ -16,8 +16,6 @@ public class Produkt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "barcode", updatable = false, nullable = false)
 	private String barcode;
 
 	private String navn;

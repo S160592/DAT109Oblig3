@@ -16,4 +16,9 @@ public class ProduktEAO  {
 	public List<Produkt> hentAlle() {
 		return em.createNamedQuery("Produkt.findAll", Produkt.class).getResultList();
 	}
+
+	public void lagre(Produkt produkt) {
+		em.persist(produkt);
+		
+	}
 }
