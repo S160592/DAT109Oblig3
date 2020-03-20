@@ -11,6 +11,7 @@ public class BrukarEAO implements BrukarEAOInterface {
 	@PersistenceContext(name = "avfall")
 	private EntityManager em;
 
+	//Usikker på denne?
 	@Override
 	public boolean komPåEitGodtNavn(String brukernavn, String passord) {
 		// TODO Auto-generated method stub

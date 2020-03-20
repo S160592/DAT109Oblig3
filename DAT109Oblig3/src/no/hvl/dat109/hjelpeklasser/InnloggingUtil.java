@@ -17,6 +17,7 @@ public class InnloggingUtil {
 		return passord != null && passord.equals(korrektPassord);
 	}
 	
+	//Klasse for Â sjekke om passord stemmer til eit brukernavn
 	public boolean sjekkBrukernavnPassord(String brukernavn, String passord) {
 		return brukarEAO.komPÂEitGodtNavn(brukernavn, passord);
 	}
