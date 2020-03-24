@@ -29,6 +29,12 @@ public class DatabehandlingEAO implements Databehandling {
 		produktEAO.lagre(produkt);
 		
 	}
+
+	@Override
+	public Produkt getProdukt(String barcode) {
+		// TODO Auto-generated method stub
+		return produktEAO.getProdukt(barcode);
+	}
 	
 
 
