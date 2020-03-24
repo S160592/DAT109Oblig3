@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import no.hvl.dat109.EAO.ProduktEAO;
 import no.hvl.dat109.Entity.Produkt;
-import no.hvl.dat109.Interfaces.Databehandling;
 
 /**
  * Servlet implementation class getProduct
@@ -23,7 +23,7 @@ public class getProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	Databehandling databehandling;
+	ProduktEAO databehandling;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,7 +39,7 @@ public class getProduct extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF8");
 //		
 		String barcode = request.getParameter("barcode");
 //		
