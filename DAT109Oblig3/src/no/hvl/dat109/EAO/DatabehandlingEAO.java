@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.Entity.Produkt;
 import no.hvl.dat109.Interfaces.Databehandling;
 import no.hvl.dat109.Interfaces.ProduktEAOInterface;
@@ -18,6 +19,8 @@ public class DatabehandlingEAO implements Databehandling {
 
 	@EJB
 	ProduktEAOInterface produktEAO;
+	
+
 
 	@Override
 	public List<Produkt> getAlleProdukt() {
@@ -32,6 +35,15 @@ public class DatabehandlingEAO implements Databehandling {
 	public Produkt getProdukt(String barcode) {
 		// TODO Auto-generated method stub
 		return produktEAO.getProdukt(barcode);
+	}
+
+
+
+
+	@Override
+	public void lagreNyBrukar(Brukar brukar) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
