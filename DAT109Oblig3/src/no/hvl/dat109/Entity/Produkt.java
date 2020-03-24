@@ -35,7 +35,8 @@ public class Produkt implements Serializable {
 	//bi-directional many-to-one association to Avfallstype
 	@ManyToOne
 	@JoinColumn(name="avfallstype")
-	private Avfallstype avfallstypeBean;
+	@Expose
+	private Avfallstype avfallstype;
 
 	public Produkt() {
 	}
@@ -95,11 +96,11 @@ public class Produkt implements Serializable {
 	}
 
 	public Avfallstype getAvfallstypeBean() {
-		return this.avfallstypeBean;
+		return this.avfallstype;
 	}
 
 	public void setAvfallstypeBean(Avfallstype avfallstypeBean) {
-		this.avfallstypeBean = avfallstypeBean;
+		this.avfallstype = avfallstypeBean;
 	}
 	
 

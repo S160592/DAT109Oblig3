@@ -1,10 +1,19 @@
 package no.hvl.dat109.Entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * The persistent class for the avfallsplass database table.
@@ -14,7 +23,7 @@ import java.util.List;
 
 @Table(name = "Avfallsplass", schema = "oblig3")
 
-@NamedQuery(name="Avfallsplass.findAll", query="SELECT a FROM Avfallsplass a")
+@NamedQuery(name = "Avfallsplass.findAll", query = "SELECT a FROM Avfallsplass a")
 public class Avfallsplass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,15 +31,15 @@ public class Avfallsplass implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "plassid", updatable = false, nullable = false)
 	private Integer plassid;
-
+	@Expose
 	private BigDecimal latitude;
-
+	@Expose
 	private BigDecimal longitude;
-
+	@Expose
 	private String navn;
 
-	//bi-directional many-to-many association to Avfallstype
-	@ManyToMany(mappedBy="avfallsplasses")
+	// bi-directional many-to-many association to Avfallstype
+	@ManyToMany(mappedBy = "avfallsplass")
 	private List<Avfallstype> avfallstypes;
 
 	public Avfallsplass() {
@@ -75,6 +84,5 @@ public class Avfallsplass implements Serializable {
 	public void setAvfallstypes(List<Avfallstype> avfallstypes) {
 		this.avfallstypes = avfallstypes;
 	}
-	
 
 }
