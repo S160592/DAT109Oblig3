@@ -19,6 +19,9 @@ public class ProduktEAO  {
 
 	public void lagre(Produkt produkt) {
 		em.persist(produkt);
-		
+	}
+	
+	public Produkt getProdukt(String barcode) {
+		return em.find(Produkt.class, barcode);
 	}
 }

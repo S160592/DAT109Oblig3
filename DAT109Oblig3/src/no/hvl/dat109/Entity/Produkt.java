@@ -2,6 +2,9 @@ package no.hvl.dat109.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 
@@ -16,13 +19,18 @@ public class Produkt implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String barcode;
+	@Expose
+	private String strekkode;
+	@Expose
+	private String produktnavn;
+	@Expose
+	private String produkttype;
+	@Expose
+	private String produsent;
 
-	private String navn;
-
-	//bi-directional many-to-one association to Historikk
-	@OneToMany(mappedBy="produkt")
-	private List<Historikk> historikks;
+	//bi-directional many-to-one association to Leveringsoversikt
+	@OneToMany(mappedBy="produktBean")
+	private List<Leveringsoversikt> leveringsoversikts;
 
 	//bi-directional many-to-one association to Avfallstype
 	@ManyToOne
@@ -32,42 +40,58 @@ public class Produkt implements Serializable {
 	public Produkt() {
 	}
 
-	public String getBarcode() {
-		return this.barcode;
+	public String getStrekkode() {
+		return this.strekkode;
 	}
 
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
+	public void setStrekkode(String strekkode) {
+		this.strekkode = strekkode;
 	}
 
-	public String getNavn() {
-		return this.navn;
+	public String getProduktnavn() {
+		return this.produktnavn;
 	}
 
-	public void setNavn(String navn) {
-		this.navn = navn;
+	public void setProduktnavn(String produktnavn) {
+		this.produktnavn = produktnavn;
 	}
 
-	public List<Historikk> getHistorikks() {
-		return this.historikks;
+	public String getProdukttype() {
+		return this.produkttype;
 	}
 
-	public void setHistorikks(List<Historikk> historikks) {
-		this.historikks = historikks;
+	public void setProdukttype(String produkttype) {
+		this.produkttype = produkttype;
 	}
 
-	public Historikk addHistorikk(Historikk historikk) {
-		getHistorikks().add(historikk);
-		historikk.setProdukt(this);
-
-		return historikk;
+	public String getProdusent() {
+		return this.produsent;
 	}
 
-	public Historikk removeHistorikk(Historikk historikk) {
-		getHistorikks().remove(historikk);
-		historikk.setProdukt(null);
+	public void setProdusent(String produsent) {
+		this.produsent = produsent;
+	}
 
-		return historikk;
+	public List<Leveringsoversikt> getLeveringsoversikts() {
+		return this.leveringsoversikts;
+	}
+
+	public void setLeveringsoversikts(List<Leveringsoversikt> leveringsoversikts) {
+		this.leveringsoversikts = leveringsoversikts;
+	}
+
+	public Leveringsoversikt addLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
+		getLeveringsoversikts().add(leveringsoversikt);
+		leveringsoversikt.setProduktBean(this);
+
+		return leveringsoversikt;
+	}
+
+	public Leveringsoversikt removeLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
+		getLeveringsoversikts().remove(leveringsoversikt);
+		leveringsoversikt.setProduktBean(null);
+
+		return leveringsoversikt;
 	}
 
 	public Avfallstype getAvfallstypeBean() {
@@ -77,12 +101,5 @@ public class Produkt implements Serializable {
 	public void setAvfallstypeBean(Avfallstype avfallstypeBean) {
 		this.avfallstypeBean = avfallstypeBean;
 	}
-
-	@Override
-	public String toString() {
-		return "Produkt [barcode=" + barcode + ", navn=" + navn + "]";
-	}
-	
-	
 
 }

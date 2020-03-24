@@ -9,21 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import no.hvl.dat109.EAO.ProduktEAO;
+import no.hvl.dat109.Entity.Produkt;
 
 /**
- * Servlet implementation class Test
+ * Servlet implementation class getProduct
  */
-@WebServlet("/Test")
-public class Test extends HttpServlet {
+@WebServlet("/getProduct")
+public class getProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	private ProduktEAO produktEAO;
+	ProduktEAO produktEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public getProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +37,18 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Skriv ut alle produkt");
-		produktEAO.hentAlle().forEach(System.out::println);
-		System.out.println("Skriv ut alle produkt ferdig");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		String barcode = request.getParameter("barcode");
+		
+		Produkt produkt = produktEAO.getProdukt(barcode);
+		
+		Gson gson = new GsonBuilder()
+		        .excludeFieldsWithoutExposeAnnotation()
+		        .create();
+		
+		response.getWriter().append(gson.toJson(produkt));
 	}
 
 	/**

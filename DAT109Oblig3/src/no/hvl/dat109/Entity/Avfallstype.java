@@ -1,18 +1,8 @@
 package no.hvl.dat109.Entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 
 /**
@@ -21,8 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Avfallstype", schema = "oblig3")
-@DiscriminatorColumn(name="typenavn", 
-discriminatorType = DiscriminatorType.STRING)
+
 @NamedQuery(name="Avfallstype.findAll", query="SELECT a FROM Avfallstype a")
 public class Avfallstype implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +19,7 @@ public class Avfallstype implements Serializable {
 	@Id
 	private String typenavn;
 
-	private String beskrivelse;
+	private String avfallsbeskrivelse;
 
 	//bi-directional many-to-many association to Avfallsplass
 	@ManyToMany
@@ -60,12 +49,12 @@ public class Avfallstype implements Serializable {
 		this.typenavn = typenavn;
 	}
 
-	public String getBeskrivelse() {
-		return this.beskrivelse;
+	public String getAvfallsbeskrivelse() {
+		return this.avfallsbeskrivelse;
 	}
 
-	public void setBeskrivelse(String beskrivelse) {
-		this.beskrivelse = beskrivelse;
+	public void setAvfallsbeskrivelse(String avfallsbeskrivelse) {
+		this.avfallsbeskrivelse = avfallsbeskrivelse;
 	}
 
 	public List<Avfallsplass> getAvfallsplasses() {
