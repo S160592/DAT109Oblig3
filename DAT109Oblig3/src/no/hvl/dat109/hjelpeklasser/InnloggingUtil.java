@@ -17,9 +17,9 @@ public class InnloggingUtil {
 		return passord != null && passord.equals(korrektPassord);
 	}
 	
-	//Klasse for å sjekke om passord stemmer til eit brukernavn
+	//Klasse for ï¿½ sjekke om passord stemmer til eit brukernavn
 	public boolean sjekkBrukernavnPassord(String brukernavn, String passord) {
-		return brukarEAO.komPåEitGodtNavn(brukernavn, passord);
+		return brukarEAO.komPaEitGodtNavn(brukernavn, passord);
 	}
 
 	public static boolean isInnlogget(HttpServletRequest request) {

@@ -29,6 +29,7 @@ public class DatabehandlingEAO implements Databehandling {
 		produktEAO.lagre(produkt);
 		
 	}
+	
 
 
 }

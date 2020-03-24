@@ -24,4 +24,5 @@ public class ProduktEAO  {
 	public Produkt getProdukt(String barcode) {
 		return em.find(Produkt.class, barcode);
 	}
+	
 }

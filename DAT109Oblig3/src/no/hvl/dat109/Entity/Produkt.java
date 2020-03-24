@@ -101,5 +101,6 @@ public class Produkt implements Serializable {
 	public void setAvfallstypeBean(Avfallstype avfallstypeBean) {
 		this.avfallstypeBean = avfallstypeBean;
 	}
+	
 
 }

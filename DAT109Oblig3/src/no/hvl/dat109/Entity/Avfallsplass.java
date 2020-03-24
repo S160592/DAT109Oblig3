@@ -75,5 +75,6 @@ public class Avfallsplass implements Serializable {
 	public void setAvfallstypes(List<Avfallstype> avfallstypes) {
 		this.avfallstypes = avfallstypes;
 	}
+	
 
 }

@@ -8,4 +8,5 @@ public interface Databehandling {
 
 	public List<Produkt> getAlleProdukt();
 	public void lagreProdukt(Produkt produkt);
+	
 }
