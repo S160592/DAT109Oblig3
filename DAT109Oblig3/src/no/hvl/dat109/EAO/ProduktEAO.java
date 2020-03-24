@@ -16,13 +16,11 @@ public class ProduktEAO  {
 	public List<Produkt> hentAlle() {
 		return em.createNamedQuery("Produkt.findAll", Produkt.class).getResultList();
 	}
-
-	public void lagre(Produkt produkt) {
-		em.persist(produkt);
-	}
 	
-	public Produkt getProdukt(String barcode) {
-		return em.find(Produkt.class, barcode);
+
+	
+	public Produkt getProdukt(String strekkode) {
+		return em.find(Produkt.class, strekkode);
 	}
 	
 }

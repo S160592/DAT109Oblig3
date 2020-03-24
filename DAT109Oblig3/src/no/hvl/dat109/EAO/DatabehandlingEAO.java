@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import no.hvl.dat109.Entity.Produkt;
 import no.hvl.dat109.Interfaces.Databehandling;
+import no.hvl.dat109.Interfaces.ProduktEAOInterface;
 
 @Stateless
 public class DatabehandlingEAO implements Databehandling {
@@ -16,7 +17,7 @@ public class DatabehandlingEAO implements Databehandling {
 	private EntityManager em;
 
 	@EJB
-	private ProduktEAO produktEAO;
+	ProduktEAOInterface produktEAO;
 
 	@Override
 	public List<Produkt> getAlleProdukt() {
@@ -24,11 +25,8 @@ public class DatabehandlingEAO implements Databehandling {
 		return produktEAO.hentAlle();
 	}
 
-	@Override
-	public void lagreProdukt(Produkt produkt) {
-		produktEAO.lagre(produkt);
-		
-	}
+
+	
 
 	@Override
 	public Produkt getProdukt(String barcode) {
