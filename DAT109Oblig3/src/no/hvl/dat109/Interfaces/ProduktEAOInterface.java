@@ -9,4 +9,5 @@ public interface ProduktEAOInterface {
 	public List<Produkt> hentAlle();
 	public Produkt getProdukt(String strekkode);
 
+
 }
