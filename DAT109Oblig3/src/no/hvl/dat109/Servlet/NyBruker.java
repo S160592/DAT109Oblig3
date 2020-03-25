@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.Entity.Brukar;
-import no.hvl.dat109.Interfaces.Databehandling;
+import no.hvl.dat109.Interfaces.BrukarEAOInterface;
 
 /**
  * Servlet implementation class NyBruker
@@ -24,7 +24,7 @@ public class NyBruker extends HttpServlet {
       
 	
 	@EJB
-	Databehandling databehandling;
+	BrukarEAOInterface brukarEAO;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,7 +66,7 @@ public class NyBruker extends HttpServlet {
 		brukar.setFornavn(fornavn);
 		brukar.setPassord(passord);
 		brukar.setTelefon(telefon);
-		databehandling.lagreNyBrukar(brukar);
+		brukarEAO.lagreNyBrukar(brukar);
 		//5a. Logge inn brukaren
 		
 		

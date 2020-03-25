@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.Interfaces.BrukarEAOInterface;
 
 @Stateless
@@ -16,6 +17,12 @@ public class BrukarEAO implements BrukarEAOInterface {
 	public boolean komPaEitGodtNavn(String brukernavn, String passord) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void lagreNyBrukar(Brukar brukar) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

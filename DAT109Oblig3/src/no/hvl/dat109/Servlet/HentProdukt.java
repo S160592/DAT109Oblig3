@@ -14,7 +14,6 @@ import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.EAO.ProduktEAO;
 import no.hvl.dat109.Entity.Produkt;
-import no.hvl.dat109.Interfaces.Databehandling;
 
 /**
  * Servlet implementation class getProduct
@@ -24,10 +23,9 @@ public class HentProdukt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	ProduktEAO databehandlinge;
+	ProduktEAO databehandling;
 	
-	@EJB
-	Databehandling databehandling;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */

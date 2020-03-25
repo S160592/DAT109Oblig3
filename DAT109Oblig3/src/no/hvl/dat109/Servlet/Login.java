@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import no.hvl.dat109.Interfaces.Databehandling;
+import no.hvl.dat109.Interfaces.BrukarEAOInterface;
+
 
 /**
  * Servlet implementation class Login
@@ -22,7 +23,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	Databehandling databehandling;
+	BrukarEAOInterface brukerEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */

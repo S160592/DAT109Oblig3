@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.Entity.Avfallsplass;
-import no.hvl.dat109.Interfaces.Databehandling;
+import no.hvl.dat109.Interfaces.AvfallsplassInterface;
 
 /**
  * Servlet implementation class NermasteLeveringsstad
@@ -25,7 +25,7 @@ public class NermasteLeveringsstad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	Databehandling databehandling;
+	AvfallsplassInterface AvfallsplassEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
