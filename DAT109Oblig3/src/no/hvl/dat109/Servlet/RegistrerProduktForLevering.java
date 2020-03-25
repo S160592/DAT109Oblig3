@@ -1,59 +1,33 @@
 package no.hvl.dat109.Servlet;
 
 import java.io.IOException;
-
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import no.hvl.dat109.EAO.ProduktEAO;
-import no.hvl.dat109.Entity.Produkt;
-import no.hvl.dat109.Interfaces.Databehandling;
-
 /**
- * Servlet implementation class getProduct
+ * Servlet implementation class RegistrerProduktForLevering
  */
-@WebServlet("/getProduct")
-public class getProduct extends HttpServlet {
+@WebServlet("/registrerProduktForLevering")
+public class RegistrerProduktForLevering extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@EJB
-	ProduktEAO databehandlinge;
-	
-	@EJB
-	Databehandling databehandling;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getProduct() {
+    public RegistrerProduktForLevering() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF8");
-//		
-		String barcode = request.getParameter("barcode");
-//		
-		Produkt produkt = databehandling.getProdukt(barcode);
-//		
-		Gson gson = new GsonBuilder()
-		        .excludeFieldsWithoutExposeAnnotation()
-		        .create();
-		
-		response.getWriter().append(gson.toJson(produkt));
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
