@@ -14,6 +14,8 @@ import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.EAO.ProduktEAO;
 import no.hvl.dat109.Entity.Produkt;
+import no.hvl.dat109.hjelpeklasser.Melding;
+import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
 /**
  * Servlet implementation class getProduct
@@ -51,7 +53,11 @@ public class HentProdukt extends HttpServlet {
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		response.getWriter().append(gson.toJson(produkt));
+		Melding melding = new Melding(Meldingstype.LoginOK); // fiks fra LoginOK til produktOK
+		melding.setProdukt(produkt);
+		//produkt.getAvfallstypeBean().getAvfallsplasses().forEach(p -> p.setAvfallstypes(null));
+		
+		response.getWriter().append(gson.toJson(melding));
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package no.hvl.dat109.hjelpeklasser;
 
+import com.google.gson.annotations.Expose;
+
 import no.hvl.dat109.Entity.Avfallsplass;
 import no.hvl.dat109.Entity.Avfallstype;
 import no.hvl.dat109.Entity.Brukar;
@@ -7,13 +9,18 @@ import no.hvl.dat109.Entity.Leveringsoversikt;
 import no.hvl.dat109.Entity.Produkt;
 
 public class Melding {
+	@Expose
 	private Brukar brukar;
+	@Expose
 	private Produkt produkt;
+	@Expose
 	private Avfallsplass avfallsplass;
+	@Expose
 	private Avfallstype avfallstype;
+	@Expose
 	private Leveringsoversikt leveringsoversikt;
 	
-	
+	@Expose
 	private Meldingstype meldingstype;
 	public Melding(Meldingstype meldingstype) {
 		this.meldingstype = meldingstype;

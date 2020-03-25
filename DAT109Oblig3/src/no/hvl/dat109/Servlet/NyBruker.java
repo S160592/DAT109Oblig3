@@ -48,15 +48,15 @@ public class NyBruker extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String telefon = request.getParameter("telefon");
-		String fornavn = request.getParameter("fornavn");
-		String etternavn = request.getParameter("etternavn");
-		String passord = request.getParameter("passord");
-		String passordRepetert = request.getParameter("passordRepetert");
+		String telefon = request.getParameter("telefon"); // for test "81549300"
+		String fornavn = request.getParameter("fornavn"); // For test "Ole"
+		String etternavn = request.getParameter("etternavn"); // for test "Doffen"
+		String passord = request.getParameter("passord"); // for test "qwer1234"
+		String passordRepetert = request.getParameter("passordRepetert"); // for test "qwer1234"
 		String nyBrukerTilbakemelding = "";
 		//1.Valider input(om alt e fylt ut)
 		
-		//2.Valider om bruker finst frå før
+		//2.Valider om bruker finst frï¿½ fï¿½r
 		
 		//3.Valider om passord e like
 		

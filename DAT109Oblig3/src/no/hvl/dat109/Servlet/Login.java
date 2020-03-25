@@ -45,8 +45,8 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String telefon = request.getParameter("telefon");
-		String passord = request.getParameter("passord");
+		String telefon = request.getParameter("telefon"); // for test "81549300"
+		String passord = request.getParameter("passord"); // for test "qwer1234"
 		String loginTilbakemelding = "";
 		//1.Valider telefon
 		
