@@ -14,6 +14,8 @@ import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.Interfaces.BrukarEAOInterface;
+import no.hvl.dat109.hjelpeklasser.Melding;
+import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
 /**
  * Servlet implementation class NyBruker
@@ -61,6 +63,8 @@ public class NyBruker extends HttpServlet {
 		//3.Valider om passord e like
 		
 		//4a.Om alt er ok:
+		Melding melding = new Melding(Meldingstype.RegistreringOK);
+;
 		Brukar brukar = new Brukar();
 		brukar.setEtternavn(etternavn);
 		brukar.setFornavn(fornavn);
@@ -73,12 +77,12 @@ public class NyBruker extends HttpServlet {
 		
 		//4b.Om alt ikkje er ok:
 		//Send riktig feilmelding
-		
+//		
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
-		
-		response.getWriter().append(gson.toJson(nyBrukerTilbakemelding));
+//		
+		response.getWriter().append(gson.toJson(melding));
 	
 	}
 
