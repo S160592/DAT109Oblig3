@@ -11,7 +11,7 @@ import no.hvl.dat109.Interfaces.BrukarEAOInterface;
 
 public class InnloggingUtil {
 	@EJB
-	BrukarEAOInterface brukarEAO = new BrukarEAO();
+	BrukarEAO brukarEAO;
 	
 	public static boolean isGyldigPassord(String passord, String korrektPassord) {
 		return passord != null && passord.equals(korrektPassord);
