@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	BrukarEAOInterface brukerEAO;
+	BrukarEAOInterface brukarEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -53,9 +53,11 @@ public class Login extends HttpServlet {
 		Melding melding;
 		
 		//1.Valider telefon
-		if(brukerEAO.hentBrukar(telefon) != null) {
+		if(brukarEAO.hentBrukar(telefon) != null) {
 			melding = new Melding(Meldingstype.LoginOK);
 			InnloggingUtil.loggInn(request);
+		}else if(!(brukarEAO.hentBrukar(telefon).getPassord().equals(passord))){
+			melding = new Melding(Meldingstype.FeilPassord);
 		}else {
 			melding = new Melding(Meldingstype.BrukarFinnastIkkje);
 		}
