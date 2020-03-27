@@ -41,20 +41,26 @@ public class HentProdukt extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF8");
-//		
+		
 		String barcode = request.getParameter("barcode");
-//		
+		Melding melding;
+		
 		Produkt produkt = produktEAO.getProdukt(barcode);
-//		
+		if(produkt == null) {
+			melding = new Melding(Meldingstype.ProduktFinnastIkkje);
+		}else {
+			melding = new Melding(Meldingstype.ProduktOK); 
+			melding.setProdukt(produkt);
+		}
+		
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		Melding melding = new Melding(Meldingstype.ProduktOK); // fiks fra LoginOK til produktOK
-		melding.setProdukt(produkt);
+
 		//produkt.getAvfallstypeBean().getAvfallsplasses().forEach(p -> p.setAvfallstypes(null));
 		
 		response.getWriter().append(gson.toJson(melding));
