@@ -57,6 +57,7 @@ public class NyBruker extends HttpServlet {
 		String passord = request.getParameter("passord"); // for test "qwer1234"
 		String passordRepetert = request.getParameter("passordRepetert"); // for test "qwer1234"
 		Melding melding;
+		System.out.println("ny brukar");
 		//1.Valider input(om alt e fylt ut)
 		
 		//2.Valider om bruker finst fr� f�r

@@ -21,6 +21,7 @@ public class BrukarEAO implements BrukarEAOInterface {
 
 	@Override
 	public void lagreNyBrukar(Brukar brukar) {
+		em.persist(brukar);
 		// TODO Auto-generated method stub
 		
 	}
