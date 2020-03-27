@@ -1,5 +1,7 @@
 package no.hvl.dat109.EAO;
 
-public class AvfallstypeEAO {
+import no.hvl.dat109.Interfaces.AvfallstypeEAOInterface;
+
+public class AvfallstypeEAO implements AvfallstypeEAOInterface{
 
 }
