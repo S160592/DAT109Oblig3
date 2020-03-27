@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import no.hvl.dat109.EAO.BrukarEAO;
-import no.hvl.dat109.EAO.LeveringsoversiktEAO;
-import no.hvl.dat109.EAO.ProduktEAO;
 import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.Entity.Leveringsoversikt;
 import no.hvl.dat109.Entity.Produkt;
+import no.hvl.dat109.Interfaces.BrukarEAOInterface;
+import no.hvl.dat109.Interfaces.LeveringsoversiktEAOInterface;
+import no.hvl.dat109.Interfaces.ProduktEAOInterface;
 import no.hvl.dat109.hjelpeklasser.Melding;
 import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
@@ -29,13 +29,13 @@ public class RegistrerProduktForLevering extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	LeveringsoversiktEAO leveringsoversiktEAO;
+	LeveringsoversiktEAOInterface leveringsoversiktEAO;
 	
 	@EJB
-	BrukarEAO brukarEAO;
+	BrukarEAOInterface brukarEAO;
 	
 	@EJB
-	ProduktEAO produktEAO;
+	ProduktEAOInterface produktEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */

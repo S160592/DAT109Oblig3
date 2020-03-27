@@ -53,7 +53,7 @@ public class HentProdukt extends HttpServlet {
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		Melding melding = new Melding(Meldingstype.LoginOK); // fiks fra LoginOK til produktOK
+		Melding melding = new Melding(Meldingstype.ProduktOK); // fiks fra LoginOK til produktOK
 		melding.setProdukt(produkt);
 		//produkt.getAvfallstypeBean().getAvfallsplasses().forEach(p -> p.setAvfallstypes(null));
 		
