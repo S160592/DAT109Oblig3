@@ -13,6 +13,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.Interfaces.BrukarEAOInterface;
+import no.hvl.dat109.hjelpeklasser.InnloggingUtil;
+import no.hvl.dat109.hjelpeklasser.Melding;
+import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
 
 /**
@@ -47,9 +50,15 @@ public class Login extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String telefon = request.getParameter("telefon"); // for test "81549300"
 		String passord = request.getParameter("passord"); // for test "qwer1234"
-		String loginTilbakemelding = "";
-		//1.Valider telefon
+		Melding melding;
 		
+		//1.Valider telefon
+		if(brukerEAO.hentBrukar(telefon) != null) {
+			melding = new Melding(Meldingstype.LoginOK);
+			InnloggingUtil.loggInn(request);
+		}else {
+			melding = new Melding(Meldingstype.BrukarFinnastIkkje);
+		}
 		//2.Valider passord
 		
 		//3.Sende tilbake en melding i Json-format
@@ -57,7 +66,7 @@ public class Login extends HttpServlet {
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		response.getWriter().append(gson.toJson(loginTilbakemelding));
+		response.getWriter().append(gson.toJson(melding));
 		
 		//4.Lage sesjon?
 		

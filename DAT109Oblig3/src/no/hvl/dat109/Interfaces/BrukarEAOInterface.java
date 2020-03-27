@@ -7,5 +7,6 @@ public interface BrukarEAOInterface {
 
 	boolean komPaEitGodtNavn(String brukernavn, String passord);
 	void lagreNyBrukar(Brukar brukar);
+	Brukar hentBrukar(String telefon);
 	
 }

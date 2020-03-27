@@ -24,6 +24,11 @@ public class BrukarEAO implements BrukarEAOInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Brukar hentBrukar(String telefon) {
+		return em.find(Brukar.class, telefon);
+	}
 	
 
 }

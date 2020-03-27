@@ -3,11 +3,12 @@ package no.hvl.dat109.hjelpeklasser;
 public enum Meldingstype {
 	LoginOK, 
 	RegistreringOK,
+	ProduktOK,
 	
 	
 	
 	
-	TelefonFinnastIkkje, 
+	BrukarFinnastIkkje, 
 	FeilPassord, 
 	PassordErIkkjeLike, 
 	BrukarFinst, 

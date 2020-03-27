@@ -25,7 +25,7 @@ public class HentProdukt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	ProduktEAO databehandling;
+	ProduktEAO produktEAO;
 	
 	
     /**
@@ -47,7 +47,7 @@ public class HentProdukt extends HttpServlet {
 //		
 		String barcode = request.getParameter("barcode");
 //		
-		Produkt produkt = databehandling.getProdukt(barcode);
+		Produkt produkt = produktEAO.getProdukt(barcode);
 //		
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()

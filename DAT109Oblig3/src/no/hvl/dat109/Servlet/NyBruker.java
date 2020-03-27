@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.Interfaces.BrukarEAOInterface;
+import no.hvl.dat109.hjelpeklasser.InnloggingUtil;
 import no.hvl.dat109.hjelpeklasser.Melding;
 import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
@@ -55,25 +56,32 @@ public class NyBruker extends HttpServlet {
 		String etternavn = request.getParameter("etternavn"); // for test "Doffen"
 		String passord = request.getParameter("passord"); // for test "qwer1234"
 		String passordRepetert = request.getParameter("passordRepetert"); // for test "qwer1234"
-		String nyBrukerTilbakemelding = "";
+		Melding melding;
 		//1.Valider input(om alt e fylt ut)
 		
 		//2.Valider om bruker finst fr� f�r
+		if(brukarEAO.hentBrukar(telefon) != null) {
+			melding = new Melding(Meldingstype.BrukarFinst);
+		}else {
+			
+		
 		
 		//3.Valider om passord e like
 		
 		//4a.Om alt er ok:
-		Melding melding = new Melding(Meldingstype.RegistreringOK);
-;
+		
+		melding = new Melding(Meldingstype.RegistreringOK);
+
 		Brukar brukar = new Brukar();
 		brukar.setEtternavn(etternavn);
 		brukar.setFornavn(fornavn);
 		brukar.setPassord(passord);
 		brukar.setTelefon(telefon);
 		brukarEAO.lagreNyBrukar(brukar);
+		InnloggingUtil.loggInn(request);
 		//5a. Logge inn brukaren
 		
-		
+		}
 		
 		//4b.Om alt ikkje er ok:
 		//Send riktig feilmelding
