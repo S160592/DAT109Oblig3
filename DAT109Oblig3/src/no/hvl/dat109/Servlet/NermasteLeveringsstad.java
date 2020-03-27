@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import no.hvl.dat109.EAO.AvfallsplassEAO;
 import no.hvl.dat109.Entity.Avfallsplass;
-import no.hvl.dat109.Interfaces.AvfallsplassEAOInterface;
 
 /**
  * Servlet implementation class NermasteLeveringsstad
@@ -25,7 +25,7 @@ public class NermasteLeveringsstad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	AvfallsplassEAOInterface AvfallsplassEAO;
+	AvfallsplassEAO AvfallsplassEAO;
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -8,11 +8,11 @@ import no.hvl.dat109.Entity.Leveringsoversikt;
 import no.hvl.dat109.Interfaces.LeveringsoversiktEAOInterface;
 
 @Stateless
-public class LeveringsoversiktEAO implements LeveringsoversiktEAOInterface{
+public class LeveringsoversiktEAO{
 	@PersistenceContext(name="avfall")
 	EntityManager em;
 
-	@Override
+	
 	public void addLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
 		em.persist(leveringsoversikt);
 		

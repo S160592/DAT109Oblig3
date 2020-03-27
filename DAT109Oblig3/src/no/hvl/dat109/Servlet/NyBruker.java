@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import no.hvl.dat109.EAO.BrukarEAO;
 import no.hvl.dat109.Entity.Brukar;
-import no.hvl.dat109.Interfaces.BrukarEAOInterface;
 import no.hvl.dat109.hjelpeklasser.InnloggingUtil;
 import no.hvl.dat109.hjelpeklasser.Melding;
 import no.hvl.dat109.hjelpeklasser.Meldingstype;
@@ -27,7 +27,7 @@ public class NyBruker extends HttpServlet {
       
 	
 	@EJB
-	BrukarEAOInterface brukarEAO;
+	BrukarEAO brukarEAO;
 	
     /**
      * @see HttpServlet#HttpServlet()
