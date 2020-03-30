@@ -48,7 +48,7 @@ public class HentProdukt extends HttpServlet {
 		String barcode = request.getParameter("barcode");
 		Melding melding;
 		
-		Produkt produkt = produktEAO.getProdukt(barcode);
+		Produkt produkt = produktEAO.hentProdukt(barcode);
 		if(produkt == null) {
 			melding = new Melding(Meldingstype.ProduktFinnastIkkje);
 		}else {

@@ -64,7 +64,7 @@ public class RegistrerProduktForLevering extends HttpServlet {
 		String telefon = request.getParameter("telefon");
 		
 		Brukar brukar = brukarEAO.hentBrukar(telefon);
-		Produkt produkt = produktEAO.getProdukt(strekkode);
+		Produkt produkt = produktEAO.hentProdukt(strekkode);
 		
 		Leveringsoversikt leveringsoversikt = new Leveringsoversikt();
 		leveringsoversikt.setProduktBean(produkt);	

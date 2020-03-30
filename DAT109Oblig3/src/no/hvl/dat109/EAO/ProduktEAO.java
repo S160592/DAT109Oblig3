@@ -19,7 +19,7 @@ public class ProduktEAO  {
 	
 
 	
-	public Produkt getProdukt(String strekkode) {
+	public Produkt hentProdukt(String strekkode) {
 		return em.find(Produkt.class, strekkode);
 	}
 	
