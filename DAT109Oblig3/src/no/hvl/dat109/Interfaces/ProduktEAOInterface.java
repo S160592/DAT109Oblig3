@@ -7,7 +7,7 @@ import no.hvl.dat109.Entity.Produkt;
 public interface ProduktEAOInterface {
 	
 	public List<Produkt> hentAlle();
-	public Produkt getProdukt(String strekkode);
+	public Produkt hentProdukt(String strekkode);
 
 
 }
