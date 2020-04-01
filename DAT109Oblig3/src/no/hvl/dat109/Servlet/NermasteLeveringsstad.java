@@ -43,6 +43,7 @@ public class NermasteLeveringsstad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		gps = new GPSUtils();
 		
 		double brukarLatitude = Double.parseDouble(request.getParameter("latitude"));
 		double brukarLongitude = Double.parseDouble(request.getParameter("longitude"));
