@@ -58,17 +58,25 @@ public class Levering extends HttpServlet {
 		Brukar brukar = brukarEAO.hentBrukar(telefon);
 		
 		int avfalssplassID = Integer.parseInt(request.getParameter("avfallsplassID"));
+		
 		Avfallsplass avfallsplass = avfallsplassEAO.hentAvfallsplass(avfalssplassID);
 		Melding melding;
 		
-		List<Avfallstype> type = avfallsplass.getAvfallstypes();
+		if (avfallsplass != null) {
+			melding = new Melding(Meldingstype.ProduktForLeveringOK);
+			List<Avfallstype> type = avfallsplass.getAvfallstypes();
+			
+			List<Leveringsoversikt> produktTilLevering = leveringsoversiktEAO.hentProduktForLevering(brukar, type);
+			
+			produktTilLevering.forEach(x -> x.getProdukt().getAvfallstypeBean().setAvfallsplasses(null));
+			
+			
+			melding.setProduktTilLevering(produktTilLevering);
+		}else {
+			melding = new Melding(Meldingstype.FEIL);
+		}
 		
-		List<Leveringsoversikt> produktTilLevering = leveringsoversiktEAO.hentProduktForLevering(brukar, type);
-		
-		produktTilLevering.forEach(x -> x.getProdukt().getAvfallstypeBean().setAvfallsplasses(null));
-		
-		melding = new Melding(Meldingstype.ProduktForLeveringOK);
-		melding.setProduktTilLevering(produktTilLevering);
+
 		
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
@@ -81,8 +89,8 @@ public class Levering extends HttpServlet {
 		response.getWriter().append(gson.toJson(melding));
 		
 		
-//		finn leveringsoversikter som ikkje er levert på den 
-//		aktuelle brukaren, og som har produkttype som kan leverast på avfallsplassID? 
+//		finn leveringsoversikter som ikkje er levert pï¿½ den 
+//		aktuelle brukaren, og som har produkttype som kan leverast pï¿½ avfallsplassID? 
 	}
 
 	/**

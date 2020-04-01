@@ -1,7 +1,6 @@
 package no.hvl.dat109.Servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,6 +16,8 @@ import com.google.gson.GsonBuilder;
 import no.hvl.dat109.EAO.AvfallsplassEAO;
 import no.hvl.dat109.Entity.Avfallsplass;
 import no.hvl.dat109.hjelpeklasser.GPSUtils;
+import no.hvl.dat109.hjelpeklasser.Melding;
+import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
 /**
  * Servlet implementation class NermasteLeveringsstad
@@ -53,12 +54,20 @@ public class NermasteLeveringsstad extends HttpServlet {
 		//Finn nermaste Leveringssted(Alle innen 5 km)
 		List<Avfallsplass> nermaste = gps.finnNermaste(brukarLatitude, brukarLongitude, avfallsplasser);
 		
+		Melding melding;
+		
+		if (nermaste != null) {
+			melding = new Melding(Meldingstype.OK);
+			melding.setAvfallsplasser(nermaste);
+		}else {
+			melding = new Melding(Meldingstype.FEIL);
+		}
 		
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		response.getWriter().append(gson.toJson(nermaste));
+		response.getWriter().append(gson.toJson(melding));
 
 	}
 

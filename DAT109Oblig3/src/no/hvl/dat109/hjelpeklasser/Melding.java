@@ -23,7 +23,16 @@ public class Melding {
 	private List<Leveringsoversikt> leveringsoversikt;
 	@Expose
 	private List<Leveringsoversikt> produktTilLevering;
+	@Expose
+	private List<Avfallsplass> avfallsplasser;
 	
+	public List<Avfallsplass> getAvfallsplasser() {
+		return avfallsplasser;
+	}
+
+	public void setAvfallsplasser(List<Avfallsplass> avfallsplasser) {
+		this.avfallsplasser = avfallsplasser;
+	}
 	@Expose
 	private Meldingstype meldingstype;
 	public Melding(Meldingstype meldingstype) {

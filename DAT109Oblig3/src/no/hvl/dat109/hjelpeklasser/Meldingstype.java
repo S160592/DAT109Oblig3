@@ -7,7 +7,8 @@ public enum Meldingstype {
 	HistorikkOK,
 	LeveringOk,
 	ProduktForLeveringOK,
-	
+	OK,
+	FEIL,
 	
 	
 	LeveringFeil,
