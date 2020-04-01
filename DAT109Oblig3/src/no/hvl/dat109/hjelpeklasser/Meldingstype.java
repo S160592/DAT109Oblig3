@@ -4,6 +4,7 @@ public enum Meldingstype {
 	LoginOK, 
 	RegistreringOK,
 	ProduktOK,
+	HistorikkOK,
 	
 	
 	
@@ -15,7 +16,8 @@ public enum Meldingstype {
 	FyllUtAlleFelt, 
 	Telefon8siffer,
 	ProduktFinnastIkkje,
-	ForLangtUnna
+	ForLangtUnna,
+	TomHistorikk
 	
 
 }

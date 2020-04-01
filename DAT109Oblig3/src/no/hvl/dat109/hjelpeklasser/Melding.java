@@ -1,5 +1,7 @@
 package no.hvl.dat109.hjelpeklasser;
 
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
 
 import no.hvl.dat109.Entity.Avfallsplass;
@@ -18,7 +20,7 @@ public class Melding {
 	@Expose
 	private Avfallstype avfallstype;
 	@Expose
-	private Leveringsoversikt leveringsoversikt;
+	private List<Leveringsoversikt> leveringsoversikt;
 	
 	@Expose
 	private Meldingstype meldingstype;
@@ -50,12 +52,23 @@ public class Melding {
 	public void setAvfallstype(Avfallstype avfallstype) {
 		this.avfallstype = avfallstype;
 	}
-	public Leveringsoversikt getLeveringsoversikt() {
+
+	public List<Leveringsoversikt> getLeveringsoversikt() {
 		return leveringsoversikt;
 	}
-	public void setLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
-		this.leveringsoversikt = leveringsoversikt;
+
+	public void setLeveringsoversikt(List<Leveringsoversikt> leveringsoverik) {
+		this.leveringsoversikt = leveringsoverik;
 	}
+
+	public Meldingstype getMeldingstype() {
+		return meldingstype;
+	}
+
+	public void setMeldingstype(Meldingstype meldingstype) {
+		this.meldingstype = meldingstype;
+	}
+
 	
 	
 	

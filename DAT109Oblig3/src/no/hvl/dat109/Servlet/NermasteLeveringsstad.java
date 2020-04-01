@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.EAO.AvfallsplassEAO;
 import no.hvl.dat109.Entity.Avfallsplass;
+import no.hvl.dat109.hjelpeklasser.GPSUtils;
 
 /**
  * Servlet implementation class NermasteLeveringsstad
@@ -26,6 +27,8 @@ public class NermasteLeveringsstad extends HttpServlet {
        
 	@EJB
 	AvfallsplassEAO AvfallsplassEAO;
+	
+	GPSUtils gps;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,11 +44,12 @@ public class NermasteLeveringsstad extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String brukarLatitude = request.getParameter("latitude");
-		String brukarLongitude = request.getParameter("longitude");
+		double brukarLatitude = Double.parseDouble(request.getParameter("latitude"));
+		double brukarLongitude = Double.parseDouble(request.getParameter("longitude"));
+		
 		
 		//Finn nermaste Leveringssted(Alle innen 5 km)
-		List<Avfallsplass> nermaste = new ArrayList<Avfallsplass>();
+		List<Avfallsplass> nermaste = gps.finnNermaste(brukarLatitude, brukarLongitude);
 		
 		
 		Gson gson = new GsonBuilder()
