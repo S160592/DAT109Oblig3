@@ -11,8 +11,8 @@ import no.hvl.dat109.Entity.Avfallsplass;
 
 public class GPSUtils {
 
-	@EJB
-	AvfallsplassEAO avfallsplassEAO;
+	
+
 
 	public int distance(double lat1, double lat2, double lon1, double lon2) {
 
@@ -38,16 +38,23 @@ public class GPSUtils {
 		return (int) ((c * r)*1000);
 	}
 
-	public List<Avfallsplass> finnNermaste(double lat1, double lon1) {
-		List<Avfallsplass> alle = avfallsplassEAO.hentAlleAvfallsplasser();
+	public List<Avfallsplass> finnNermaste(double lat1, double lon1, List<Avfallsplass> avfallsplasser) {
+
+
+//		List<Avfallsplass> alle = avfallsplassEAO.hentAlleAvfallsplasser();
 //		alle.sort((a, b) -> distance(lat1, a.getLatitude().doubleValue(), lon1, a.getLongitude().doubleValue()) - distance(lat1, b.getLatitude().doubleValue(), lon1, b.getLongitude().doubleValue()));
 		List<Avfallsplass> nermaste;
-		nermaste = alle.stream().sorted(
+		nermaste = avfallsplasser.stream().sorted(
 				(a, b) -> distance(lat1, a.getLatitude().doubleValue(), lon1, a.getLongitude().doubleValue())
 						- distance(lat1, b.getLatitude().doubleValue(), lon1, b.getLongitude().doubleValue()))
 				.collect(Collectors.toList());
 
 		return nermaste;
+	}
+	
+	public boolean sjekkAvstand(double lat1, double lon1, Avfallsplass a) {
+		int avstand = distance(lat1, a.getLatitude().doubleValue(), lon1, a.getLongitude().doubleValue());
+		return avstand > 100;
 	}
 
 }

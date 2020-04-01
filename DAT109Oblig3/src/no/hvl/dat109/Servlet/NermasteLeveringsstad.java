@@ -26,7 +26,7 @@ public class NermasteLeveringsstad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	AvfallsplassEAO AvfallsplassEAO;
+	AvfallsplassEAO avfallsplassEAO;
 	
 	GPSUtils gps;
     /**
@@ -41,16 +41,17 @@ public class NermasteLeveringsstad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		gps = new GPSUtils();
 		
 		double brukarLatitude = Double.parseDouble(request.getParameter("latitude"));
 		double brukarLongitude = Double.parseDouble(request.getParameter("longitude"));
-		
+		List<Avfallsplass> avfallsplasser = avfallsplassEAO.hentAlleAvfallsplasser();
 		
 		//Finn nermaste Leveringssted(Alle innen 5 km)
-		List<Avfallsplass> nermaste = gps.finnNermaste(brukarLatitude, brukarLongitude);
+		List<Avfallsplass> nermaste = gps.finnNermaste(brukarLatitude, brukarLongitude, avfallsplasser);
 		
 		
 		Gson gson = new GsonBuilder()

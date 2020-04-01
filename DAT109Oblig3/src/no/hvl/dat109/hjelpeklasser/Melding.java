@@ -21,6 +21,8 @@ public class Melding {
 	private Avfallstype avfallstype;
 	@Expose
 	private List<Leveringsoversikt> leveringsoversikt;
+	@Expose
+	private List<Leveringsoversikt> produktTilLevering;
 	
 	@Expose
 	private Meldingstype meldingstype;
@@ -67,6 +69,9 @@ public class Melding {
 
 	public void setMeldingstype(Meldingstype meldingstype) {
 		this.meldingstype = meldingstype;
+	}
+	public void setProduktTilLevering(List<Leveringsoversikt> produkter) {
+		this.produktTilLevering = produkter;
 	}
 
 	

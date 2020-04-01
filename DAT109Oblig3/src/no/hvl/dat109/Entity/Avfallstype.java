@@ -91,4 +91,11 @@ public class Avfallstype implements Serializable {
 		return produkt;
 	}
 
+	@Override
+	public String toString() {
+		return "Avfallstype [typenavn=" + typenavn + ", avfallsbeskrivelse=" + avfallsbeskrivelse + ", avfallsplass="
+				+ avfallsplass + ", produkts=" + produkts + "]";
+	}
+	
+
 }

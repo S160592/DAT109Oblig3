@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import no.hvl.dat109.Entity.Avfallsplass;
+import no.hvl.dat109.Entity.Brukar;
 
 @Stateless
 public class AvfallsplassEAO{
@@ -15,6 +16,10 @@ public class AvfallsplassEAO{
 
 	public List<Avfallsplass> hentAlleAvfallsplasser() {
 		return em.createNamedQuery("Avfallsplass.findAll", Avfallsplass.class).getResultList();
+	}
+	
+	public Avfallsplass hentAvfallsplass(int id) {
+		return em.find(Avfallsplass.class, id);
 	}
 
 }

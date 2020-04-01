@@ -3,6 +3,8 @@ package no.hvl.dat109.Entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 
 
 /**
@@ -15,12 +17,14 @@ import javax.persistence.*;
 @NamedQuery(name="Leveringsoversikt.findAll", query="SELECT l FROM Leveringsoversikt l")
 public class Leveringsoversikt implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Expose
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
-
+	
+	@Expose
 	private Boolean levert;
 
 	//bi-directional many-to-one association to Brukar
@@ -29,6 +33,7 @@ public class Leveringsoversikt implements Serializable {
 	private Brukar brukarBean;
 
 	//bi-directional many-to-one association to Produkt
+	@Expose
 	@ManyToOne
 	@JoinColumn(name="produkt")
 	private Produkt produktBean;

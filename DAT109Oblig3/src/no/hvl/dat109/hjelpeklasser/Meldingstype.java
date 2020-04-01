@@ -5,10 +5,12 @@ public enum Meldingstype {
 	RegistreringOK,
 	ProduktOK,
 	HistorikkOK,
+	LeveringOk,
+	ProduktForLeveringOK,
 	
 	
 	
-	
+	LeveringFeil,
 	BrukarFinnastIkkje, 
 	FeilPassord, 
 	PassordErIkkjeLike, 
