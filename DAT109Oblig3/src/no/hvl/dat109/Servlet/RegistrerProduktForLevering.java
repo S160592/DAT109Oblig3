@@ -67,8 +67,8 @@ public class RegistrerProduktForLevering extends HttpServlet {
 		Produkt produkt = produktEAO.hentProdukt(strekkode);
 		
 		Leveringsoversikt leveringsoversikt = new Leveringsoversikt();
-		leveringsoversikt.setProduktBean(produkt);	
-		leveringsoversikt.setBrukarBean(brukar);
+		leveringsoversikt.setProdukt(produkt);	
+		leveringsoversikt.setBrukar(brukar);
 		leveringsoversikt.setLevert(false);
 		leveringsoversiktEAO.addLeveringsoversikt(leveringsoversikt);
 	

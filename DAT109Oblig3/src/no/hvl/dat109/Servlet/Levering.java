@@ -65,7 +65,7 @@ public class Levering extends HttpServlet {
 		
 		List<Leveringsoversikt> produktTilLevering = leveringsoversiktEAO.hentProduktForLevering(brukar, type);
 		
-		produktTilLevering.forEach(x -> x.getProduktBean().getAvfallstypeBean().setAvfallsplasses(null));
+		produktTilLevering.forEach(x -> x.getProdukt().getAvfallstypeBean().setAvfallsplasses(null));
 		
 		melding = new Melding(Meldingstype.ProduktForLeveringOK);
 		melding.setProduktTilLevering(produktTilLevering);

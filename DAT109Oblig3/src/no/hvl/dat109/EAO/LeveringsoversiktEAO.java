@@ -27,7 +27,7 @@ public class LeveringsoversiktEAO {
 		List<Leveringsoversikt> alle = em.createNamedQuery("Leveringsoversikt.findAll", Leveringsoversikt.class).getResultList();
 		List<Leveringsoversikt> historikk;
 		historikk = alle.stream()
-				.filter((x) -> x.getBrukarBean().getTelefon().equals(brukar.getTelefon()))
+				.filter((x) -> x.getBrukar().getTelefon().equals(brukar.getTelefon()))
 				.filter((x) -> x.getLevert() == true)
 				.collect(Collectors.toList());
 		
@@ -48,9 +48,9 @@ public class LeveringsoversiktEAO {
 		List<Leveringsoversikt> alle = em.createNamedQuery("Leveringsoversikt.findAll", Leveringsoversikt.class).getResultList();
 		List<Leveringsoversikt> produktForLevering;
 		produktForLevering = alle.stream()
-				.filter((x) -> x.getBrukarBean().getTelefon().equals(brukar.getTelefon()))
+				.filter((x) -> x.getBrukar().getTelefon().equals(brukar.getTelefon()))
 				.filter((x) -> x.getLevert() == false)
-				.filter((x) -> typeNavn.contains(x.getProduktBean().getAvfallstypeBean().getTypenavn()))
+				.filter((x) -> typeNavn.contains(x.getProdukt().getAvfallstypeBean().getTypenavn()))
 				.collect(Collectors.toList());
 	
 
@@ -66,7 +66,7 @@ public class LeveringsoversiktEAO {
 		
 		List<Leveringsoversikt> alle = em.createNamedQuery("Leveringsoversikt.findAll", Leveringsoversikt.class).getResultList();
 		alle.stream()
-		.filter(x -> produktID.contains((x.getProduktBean().getStrekkode())))
+		.filter(x -> produktID.contains((x.getProdukt().getStrekkode())))
 		.forEach(x -> x.setLevert(true));
 		
 		em.persist(alle);

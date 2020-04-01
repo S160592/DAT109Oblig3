@@ -26,7 +26,7 @@ public class Brukar implements Serializable {
 	private String passord;
 
 	//bi-directional many-to-one association to Leveringsoversikt
-	@OneToMany(mappedBy="brukarBean")
+	@OneToMany(mappedBy="brukar")
 	private List<Leveringsoversikt> leveringsoversikts;
 
 	public Brukar() {
@@ -74,14 +74,14 @@ public class Brukar implements Serializable {
 
 	public Leveringsoversikt addLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
 		getLeveringsoversikts().add(leveringsoversikt);
-		leveringsoversikt.setBrukarBean(this);
+		leveringsoversikt.setBrukar(this);
 
 		return leveringsoversikt;
 	}
 
 	public Leveringsoversikt removeLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
 		getLeveringsoversikts().remove(leveringsoversikt);
-		leveringsoversikt.setBrukarBean(null);
+		leveringsoversikt.setBrukar(null);
 
 		return leveringsoversikt;
 	}

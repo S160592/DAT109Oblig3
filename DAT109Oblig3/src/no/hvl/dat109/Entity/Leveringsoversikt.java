@@ -30,13 +30,13 @@ public class Leveringsoversikt implements Serializable {
 	//bi-directional many-to-one association to Brukar
 	@ManyToOne
 	@JoinColumn(name="brukar")
-	private Brukar brukarBean;
+	private Brukar brukar;
 
 	//bi-directional many-to-one association to Produkt
 	@Expose
 	@ManyToOne
 	@JoinColumn(name="produkt")
-	private Produkt produktBean;
+	private Produkt produkt;
 
 	public Leveringsoversikt() {
 	}
@@ -57,20 +57,20 @@ public class Leveringsoversikt implements Serializable {
 		this.levert = levert;
 	}
 
-	public Brukar getBrukarBean() {
-		return this.brukarBean;
+	public Brukar getBrukar() {
+		return this.brukar;
 	}
 
-	public void setBrukarBean(Brukar brukarBean) {
-		this.brukarBean = brukarBean;
+	public void setBrukar(Brukar brukar) {
+		this.brukar = brukar;
 	}
 
-	public Produkt getProduktBean() {
-		return this.produktBean;
+	public Produkt getProdukt() {
+		return this.produkt;
 	}
 
-	public void setProduktBean(Produkt produktBean) {
-		this.produktBean = produktBean;
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
 	}
 
 }

@@ -29,8 +29,8 @@ public class Produkt implements Serializable {
 	private String produsent;
 
 	//bi-directional many-to-one association to Leveringsoversikt
-	@OneToMany(mappedBy="produktBean")
-	private List<Leveringsoversikt> leveringsoversikts;
+	@OneToMany(mappedBy="produkt")
+	private List<Leveringsoversikt> leveringsoversikt;
 
 	//bi-directional many-to-one association to Avfallstype
 	@ManyToOne
@@ -74,23 +74,24 @@ public class Produkt implements Serializable {
 	}
 
 	public List<Leveringsoversikt> getLeveringsoversikts() {
-		return this.leveringsoversikts;
+		return this.leveringsoversikt;
 	}
 
-	public void setLeveringsoversikts(List<Leveringsoversikt> leveringsoversikts) {
-		this.leveringsoversikts = leveringsoversikts;
+	public void setLeveringsoversikt(List<Leveringsoversikt> leveringsoversikt) {
+		this.leveringsoversikt = leveringsoversikt;
 	}
 
 	public Leveringsoversikt addLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
 		getLeveringsoversikts().add(leveringsoversikt);
-		leveringsoversikt.setProduktBean(this);
+		leveringsoversikt.setProdukt(this);
 
 		return leveringsoversikt;
 	}
+	
 
 	public Leveringsoversikt removeLeveringsoversikt(Leveringsoversikt leveringsoversikt) {
 		getLeveringsoversikts().remove(leveringsoversikt);
-		leveringsoversikt.setProduktBean(null);
+		leveringsoversikt.setProdukt(null);
 
 		return leveringsoversikt;
 	}

@@ -68,7 +68,7 @@ public class HentHistorikk extends HttpServlet {
 		        .create();
 		
 		
-		historikk.forEach((x) -> x.getProduktBean().getAvfallstypeBean().setAvfallsplasses(null));
+		historikk.forEach((x) -> x.getProdukt().getAvfallstypeBean().setAvfallsplasses(null));
 		//produkt.getAvfallstypeBean().getAvfallsplasses().forEach(p -> p.setAvfallstypes(null));
 		
 		response.getWriter().append(gson.toJson(melding));
