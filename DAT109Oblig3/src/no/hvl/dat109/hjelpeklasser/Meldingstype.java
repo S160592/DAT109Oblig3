@@ -20,7 +20,7 @@ public enum Meldingstype {
 	Telefon8siffer,
 	ProduktFinnastIkkje,
 	ForLangtUnna,
-	TomHistorikk
+	TomHistorikk, ProduktLevert, IngenProdukt
 	
 
 }

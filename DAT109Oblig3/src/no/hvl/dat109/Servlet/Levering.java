@@ -1,6 +1,7 @@
 package no.hvl.dat109.Servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,6 +17,7 @@ import com.google.gson.GsonBuilder;
 import no.hvl.dat109.EAO.AvfallsplassEAO;
 import no.hvl.dat109.EAO.BrukarEAO;
 import no.hvl.dat109.EAO.LeveringsoversiktEAO;
+import no.hvl.dat109.EAO.ProduktEAO;
 import no.hvl.dat109.Entity.Avfallsplass;
 import no.hvl.dat109.Entity.Avfallstype;
 import no.hvl.dat109.Entity.Brukar;
@@ -39,6 +41,9 @@ public class Levering extends HttpServlet {
 	
 	@EJB
 	LeveringsoversiktEAO leveringsoversiktEAO;
+	
+	@EJB
+	ProduktEAO produktEAO;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -99,7 +104,26 @@ public class Levering extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-//		List<Produkt> produkter = (List<Produkt>)request.getParameter("produktTilLevering");
+		
+		String[] leveringsoversikter = request.getParameterValues("leveringsoversiktId");
+		
+		List<String> leveringsoversiktID = Arrays.asList(leveringsoversikter);
+		
+		List<Leveringsoversikt> leverteLeveringsoversikt = leveringsoversiktEAO.hentProduktListe(leveringsoversiktID);
+		Melding melding;
+		
+		if(leverteLeveringsoversikt.size() > 0) {
+			leveringsoversiktEAO.leverProdukt(leverteLeveringsoversikt);
+			melding = new Melding(Meldingstype.ProduktLevert);
+		}else {
+			melding = new Melding(Meldingstype.IngenProdukt);
+		}
+		
+		Gson gson = new GsonBuilder()
+		        .excludeFieldsWithoutExposeAnnotation()
+		        .create();
+		
+		response.getWriter().append(gson.toJson(melding));
 	}
 
 }

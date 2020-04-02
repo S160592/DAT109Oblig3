@@ -40,6 +40,15 @@ public class Produkt implements Serializable {
 
 	public Produkt() {
 	}
+	
+
+	public Produkt(String strekkode, String produktnavn, String produkttype) {
+		super();
+		this.strekkode = strekkode;
+		this.produktnavn = produktnavn;
+		this.produkttype = produkttype;
+	}
+
 
 	public String getStrekkode() {
 		return this.strekkode;

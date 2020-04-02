@@ -1,5 +1,6 @@
 package no.hvl.dat109.EAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class LeveringsoversiktEAO {
 		
 		return historikk;
 	}
-	public List<Leveringsoversikt> hentAllHistorikk() {
+	public List<Leveringsoversikt> hentAlleLeveringsoversikter() {
 		return em.createNamedQuery("Leveringsoversikt.findAll", Leveringsoversikt.class).getResultList();
 	}
 
@@ -58,20 +59,35 @@ public class LeveringsoversiktEAO {
 
 	}
 	
-	public void leverProdukt(List<Produkt> produkt) {
-		List<String> produktID = produkt.stream()
-				.map(x -> x.getStrekkode())
+	public void leverProdukt(List<Leveringsoversikt> tilLevering) {
+		List<Integer> ID = tilLevering.stream()
+				.map(x -> x.getId())
 				.collect(Collectors.toList());
 		
 		
 		List<Leveringsoversikt> alle = em.createNamedQuery("Leveringsoversikt.findAll", Leveringsoversikt.class).getResultList();
 		alle.stream()
-		.filter(x -> produktID.contains((x.getProdukt().getStrekkode())))
+		.filter(x -> ID.contains(x.getId()))
 		.forEach(x -> x.setLevert(true));
 		
 		em.persist(alle);
 		em.flush();
 	}
-	
+
+	public List<Leveringsoversikt> hentProduktListe(List<String> leveringsoversiktID) {
+		List<Leveringsoversikt> alle = hentAlleLeveringsoversikter();
+		List<Leveringsoversikt> ut;
+		
+		List<Integer> id = new ArrayList<Integer>();
+		leveringsoversiktID.forEach(x -> id.add(Integer.parseInt(x)));
+		
+		ut = alle.stream()
+				.filter(x -> id.contains(x.getId()))
+				.collect(Collectors.toList());
+		
+		
+		return ut;
+	}
+
 
 }
