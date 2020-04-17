@@ -1,6 +1,7 @@
 package no.hvl.dat109.Servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import no.hvl.dat109.EAO.BrukarEAO;
 import no.hvl.dat109.Entity.Brukar;
 import no.hvl.dat109.hjelpeklasser.InnloggingUtil;
+import no.hvl.dat109.hjelpeklasser.InputValidering;
 import no.hvl.dat109.hjelpeklasser.Melding;
 import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
@@ -51,48 +53,47 @@ public class NyBruker extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String telefon = request.getParameter("telefon"); // for test "81549300"
-		String fornavn = request.getParameter("fornavn"); // For test "Ole"
-		String etternavn = request.getParameter("etternavn"); // for test "Doffen"
-		String passord = request.getParameter("passord"); // for test "qwer1234"
-		String passordRepetert = request.getParameter("passordRepetert"); // for test "qwer1234"
+		HashMap<String,String> inputdata = new HashMap<String,String>();
+		inputdata.put("telefon", request.getParameter("telefon"));
+		inputdata.put("fornavn", request.getParameter("fornavn"));
+		inputdata.put("etternavn", request.getParameter("etternavn"));
+		inputdata.put("passord", request.getParameter("passord"));
+		inputdata.put("passordRepetert", request.getParameter("passordRepetert"));
+
+		InputValidering validering = new InputValidering(inputdata);
+		HashMap<String,String> validated_data = validering.validerNyBrukar();
+		
 		Melding melding;
 		System.out.println("ny brukar");
-		//1.Valider input(om alt e fylt ut)
-		
-		//2.Valider om bruker finst fr� f�r
-		if(brukarEAO.hentBrukar(telefon) != null) {
-			melding = new Melding(Meldingstype.BrukarFinst);
-		}else {
-			
-		
-		
-		//3.Valider om passord e like
-		
-		//4a.Om alt er ok:
-		
-		melding = new Melding(Meldingstype.RegistreringOK);
 
-		Brukar brukar = new Brukar();
-		brukar.setEtternavn(etternavn);
-		brukar.setFornavn(fornavn);
-		brukar.setPassord(passord);
-		brukar.setTelefon(telefon);
-		brukarEAO.lagreNyBrukar(brukar);
-		InnloggingUtil.loggInn(request);
-		//5a. Logge inn brukaren
+		if(validering.erGyldig()) {
 		
+			//2.Valider om bruker finst fr� f�r
+			if(brukarEAO.hentBrukar(validated_data.get("telefon")) != null) {
+				melding = new Melding(Meldingstype.BrukarFinst);
+			} else {	
+				//4a.Om alt er ok:
+				melding = new Melding(Meldingstype.RegistreringOK);
+		
+				Brukar brukar = new Brukar();
+				brukar.setEtternavn(validated_data.get("etternavn"));
+				brukar.setFornavn(validated_data.get("fornavn"));
+				brukar.setPassord(validated_data.get("passord"));
+				brukar.setTelefon(validated_data.get("telefon"));
+				brukarEAO.lagreNyBrukar(brukar);
+				InnloggingUtil.loggInn(request);
+			}
+		
+		} else { // feil i input
+			melding = new Melding(Meldingstype.FEIL);
+			melding.setFeilmeldingar(validering.getFeilmeldingar());
 		}
-		
-		//4b.Om alt ikkje er ok:
-		//Send riktig feilmelding
-//		
+
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
-//		
+		
 		response.getWriter().append(gson.toJson(melding));
-	
 	}
 
 }

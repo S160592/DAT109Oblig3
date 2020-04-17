@@ -25,6 +25,8 @@ public class Melding {
 	private List<Leveringsoversikt> produktTilLevering;
 	@Expose
 	private List<Avfallsplass> avfallsplasser;
+	@Expose
+	private List<Feilmelding> feilmeldingar;
 	
 	public List<Avfallsplass> getAvfallsplasser() {
 		return avfallsplasser;
@@ -82,11 +84,9 @@ public class Melding {
 	public void setProduktTilLevering(List<Leveringsoversikt> produkter) {
 		this.produktTilLevering = produkter;
 	}
-
 	
-	
-	
-	
-
+	public void setFeilmeldingar(List<Feilmelding> liste) {
+		feilmeldingar = liste;
+	}
 
 }

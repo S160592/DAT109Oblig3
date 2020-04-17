@@ -1,6 +1,7 @@
 package no.hvl.dat109.Servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,7 +14,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import no.hvl.dat109.EAO.BrukarEAO;
+import no.hvl.dat109.Entity.Brukar;
+import no.hvl.dat109.Entity.Produkt;
 import no.hvl.dat109.hjelpeklasser.InnloggingUtil;
+import no.hvl.dat109.hjelpeklasser.InputValidering;
 import no.hvl.dat109.hjelpeklasser.Melding;
 import no.hvl.dat109.hjelpeklasser.Meldingstype;
 
@@ -48,31 +52,37 @@ public class Login extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String telefon = request.getParameter("telefon"); // for test "81549300"
-		String passord = request.getParameter("passord"); // for test "qwer1234"
-		Melding melding;
 		
-		//1.Valider telefon
-		if(brukarEAO.hentBrukar(telefon) != null) {
-			melding = new Melding(Meldingstype.LoginOK);
-			InnloggingUtil.loggInn(request);
-		}else if(!(brukarEAO.hentBrukar(telefon).getPassord().equals(passord))){
-			melding = new Melding(Meldingstype.FeilPassord);
-		}else {
-			melding = new Melding(Meldingstype.BrukarFinnastIkkje);
+		HashMap<String,String> inputdata = new HashMap<String,String>();
+		inputdata.put("telefon", request.getParameter("telefon"));
+		inputdata.put("passord", request.getParameter("passord"));
+		
+		InputValidering validering = new InputValidering(inputdata);
+		HashMap<String,String> validated_data = validering.validerLogInn();
+		
+		Melding melding = null;
+		
+		if(validering.erGyldig()) {
+			Brukar brukar = brukarEAO.hentBrukar(validated_data.get("telefon"));
+			
+			// Godkjent innlogging
+			if(brukar != null && brukar.getPassord().equals(validated_data.get("passord"))) { 
+				melding = new Melding(Meldingstype.LoginOK);
+				InnloggingUtil.loggInn(request);
+			} else { // ikkje godkjent
+				melding = new Melding(Meldingstype.BrukarFinnastIkkje);
+			}
+			
+		} else {
+			melding = new Melding(Meldingstype.FEIL);
+			melding.setFeilmeldingar(validering.getFeilmeldingar());
 		}
-		//2.Valider passord
 		
-		//3.Sende tilbake en melding i Json-format
+		// Sende tilbake melding i Json-format
 		Gson gson = new GsonBuilder()
 		        .excludeFieldsWithoutExposeAnnotation()
 		        .create();
 		
-		response.getWriter().append(gson.toJson(melding));
-		
-		//4.Lage sesjon?
-		
-		
+		response.getWriter().append(gson.toJson(melding));		
 	}
-
 }
