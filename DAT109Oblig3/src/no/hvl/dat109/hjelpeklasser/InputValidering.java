@@ -56,7 +56,7 @@ public class InputValidering {
 	
 	public void validerEtternavn(String etternavn) {
 		if(etternavn.length()==0) {
-			feilmeldingar.add(new Feilmelding("Fornavn er ikkje fyllt ut!"));
+			feilmeldingar.add(new Feilmelding("Etternavn er ikkje fyllt ut!"));
 			erGyldig=false;
 		}
 		validated_data.put("etternavn", etternavn);
